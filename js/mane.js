@@ -1,10 +1,13 @@
 import galleryList from './gallery-items.js';
-//console.log(galleryList);
+console.log(galleryList);
 
-const gallery = document.querySelector('.js-gallery');
+const galleryContainerRef = document.querySelector('.js-gallery');
+const modalContainerRef = document.querySelector('.js-lightbox');
+const modalImageRef = document.querySelector('.lightbox__image');
+
 const cardsMarkup = createGalleryCardsMarkup(galleryList);
 
-//gallery.addEventListener('click', onGalleryClick);
+galleryContainerRef.addEventListener('click', onGalleryClick);
 
 function createGalleryCardsMarkup(galleryList) {
   return galleryList
@@ -28,35 +31,19 @@ function createGalleryCardsMarkup(galleryList) {
     .join('');
 };
 
-gallery.insertAdjacentHTML('beforeend', cardsMarkup);
+galleryContainerRef.insertAdjacentHTML('beforeend', cardsMarkup);
+console.log(galleryContainerRef);
 
-// function onGalleryClick(evt) {
-//   const isColorSwatchEl = evt.target.classList.contains('color-swatch');
+function onGalleryClick(event) {
+console.log(event.target.alt);
 
-//   if (!isColorSwatchEl) {
-//     return;
-//   }
+ const isGaleryImage = event.target.classList.contains('.gallery__image');
+  if (!isGaleryImage) {
+    return;
+  }
+  event.preventDefault();
 
-//   const swatchEl = evt.target;
-//   const parentColorCard = swatchEl.closest('.color-card');
-
-//   removeActiveCardClass();
-//   addActiveCardClass(parentColorCard);
-//   setBodyBgColor(swatchEl.dataset.hex);
-// }
-
-// function setBodyBgColor(color) {
-//   document.body.style.backgroundColor = color;
-// }
-
-// function removeActiveCardClass() {
-//   const currentActiveCard = document.querySelector('.color-card.is-active');
-
-//   if (currentActiveCard) {
-//     currentActiveCard.classList.remove('is-active');
-//   }
-// }
-
-// function addActiveCardClass(card) {
-//   card.classList.add('is-active');
-// }
+  modalContainerRef.classList.add('is-open');
+  modalImageRef.setAttribute('src', event.target.getAttribute('data-source'));
+  
+}
