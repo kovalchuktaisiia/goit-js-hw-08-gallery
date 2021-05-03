@@ -1,10 +1,10 @@
 import galleryList from './gallery-items.js';
-console.log(galleryList);
+//console.log(galleryList);
 
 const gallery = document.querySelector('.js-gallery');
 const cardsMarkup = createGalleryCardsMarkup(galleryList);
 
-// paletteContainer.addEventListener('click', onPaletteContainerClick);
+//gallery.addEventListener('click', onGalleryClick);
 
 function createGalleryCardsMarkup(galleryList) {
   return galleryList
@@ -30,7 +30,7 @@ function createGalleryCardsMarkup(galleryList) {
 
 gallery.insertAdjacentHTML('beforeend', cardsMarkup);
 
-// function onPaletteContainerClick(evt) {
+// function onGalleryClick(evt) {
 //   const isColorSwatchEl = evt.target.classList.contains('color-swatch');
 
 //   if (!isColorSwatchEl) {
