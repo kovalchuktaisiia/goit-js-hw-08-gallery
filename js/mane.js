@@ -54,13 +54,19 @@ console.log(event.target.alt);
 
   // + клас опен на модалку
   modalContainerRef.classList.add('is-open');
-  // + 
-  modalImageRef.setAttribute('src', event.target.getAtribute('${data-source}'));
+  // + подмена src
+  //modalImageRef.src = event.target.(${data-source}');
 
+  //modalImageRef.classList.replace ('src', '${data-source}');
+  modalImageRef.classList.replace ('src', event.target.getAtribute('${data-source}'));
+
+  //modalImageRef.setAttribute('src', event.target.getAtribute('${data-source}'));
+  // + слушатель клика на кнопку закрыть модалку
   closeModalImageRef.addEventListener ('click', onCloseModalImageClick);
   
 }
 
 function onCloseModalImageClick () {
   modalContainerRef.classList.remove('is-open');
+  modalImageRef.classList.replace ('${data-source}', 'src');
 }
