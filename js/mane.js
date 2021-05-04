@@ -38,21 +38,25 @@ function createGalleryCardsMarkup(galleryList) {
 galleryContainerRef.insertAdjacentHTML('beforeend', cardsMarkup);
 console.log(galleryContainerRef);
 
+// + слушатель соб на галареи
 galleryContainerRef.addEventListener('click', onGalleryContainerClick);
 
-
+// по клику на галерее
 function onGalleryContainerClick(event) {
 console.log(event.target.alt);
 
+// отловили клик на имедж
  const isGaleryImage = event.target.classList.contains('.gallery__image');
   if (!isGaleryImage) {
     return;
   }
   event.preventDefault();
 
+  // + клас опен на модалку
   modalContainerRef.classList.add('is-open');
+  // + 
   modalImageRef.setAttribute('src', event.target.getAtribute('${data-source}'));
-  
+
   closeModalImageRef.addEventListener ('click', onCloseModalImageClick);
   
 }
