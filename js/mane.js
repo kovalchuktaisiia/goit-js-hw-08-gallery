@@ -60,6 +60,6 @@ function onGalleryContainerClick(event) {
 
 function onCloseModalImageClick (event) {
   modalContainerRef.classList.remove('is-open');
-  modalImageRef.src = event.target.getAttribute('src');
+  modalImageRef.src;
 }
 
