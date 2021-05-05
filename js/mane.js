@@ -9,7 +9,6 @@ const modalImageRef = document.querySelector('.lightbox__image');
 // кнопка закрыть модалку
 const closeModalImageRef = document.querySelector('[data-action="close-lightbox"]');
 
-
 const cardsMarkup = createGalleryCardsMarkup(galleryList);
 
 // создали разметку
@@ -43,30 +42,24 @@ galleryContainerRef.addEventListener('click', onGalleryContainerClick);
 
 // по клику на галерее
 function onGalleryContainerClick(event) {
-console.log(event.target.alt);
-
-// отловили клик на имедж
- const isGaleryImage = event.target.classList.contains('.gallery__image');
-  if (!isGaleryImage) {
+  event.preventDefault();
+  console.log(event.target.alt);
+  // отловили клик на имедж
+  if (event.target === event.currentTarget) {
     return;
   }
-  event.preventDefault();
-
   // + клас опен на модалку
   modalContainerRef.classList.add('is-open');
   // + подмена src
-  //modalImageRef.src = event.target.(${data-source}');
-
-  //modalImageRef.classList.replace ('src', '${data-source}');
-  modalImageRef.classList.replace ('src', event.target.getAtribute('${data-source}'));
-
-  //modalImageRef.setAttribute('src', event.target.getAtribute('${data-source}'));
+  modalImageRef.src = event.target.getAttribute('data-source');
+  // + подмена alt
+  modalImageRef.alt = event.target.alt;
   // + слушатель клика на кнопку закрыть модалку
-  closeModalImageRef.addEventListener ('click', onCloseModalImageClick);
-  
+  closeModalImageRef.addEventListener('click', onCloseModalImageClick);
 }
 
-function onCloseModalImageClick () {
+function onCloseModalImageClick (event) {
   modalContainerRef.classList.remove('is-open');
-  modalImageRef.classList.replace ('${data-source}', 'src');
+  modalImageRef.src = event.target.getAttribute('src');
 }
+
